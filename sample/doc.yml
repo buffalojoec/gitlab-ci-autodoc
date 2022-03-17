@@ -1,0 +1,13 @@
+description: Deploy a Spring Boot jar to OpenShift
+input_vars:
+  - OPENSHIFT_NAMESPACE
+  - OPENSHIFT_SECRET
+  - JAVA_JAR_NAME
+input_artifacts:
+  - Java .jar application
+output_vars:
+  - OPENSHIFT_ROUTE
+  - HELM_DEPLOYMENT_VERSION
+  - OSE_MANIFEST_FILE
+output_artifacts:
+  - manifest.json

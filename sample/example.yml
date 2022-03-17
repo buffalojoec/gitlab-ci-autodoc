@@ -1,0 +1,11 @@
+test_deploy_template:
+  image: alpine:latest
+  variables:
+    OPENSHIFT_URL: url
+    KUBECTL_USER: user
+  script:
+    - oc login <url>
+    - kubectl apply -f some_file.yml
+  artifacts:
+    paths:
+      - yo
