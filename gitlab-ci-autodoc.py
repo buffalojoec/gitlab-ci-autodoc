@@ -18,28 +18,28 @@ ___
 """
         for x in self.input_vars:
             markdown += """{}
-""".format(x)
+""".format(x.strip())
         markdown += """```
 #### Input Artifacts:
 ```shell
 """
         for x in self.input_artifacts:
             markdown += """{}
-""".format(x)
+""".format(x.strip())
         markdown += """```
 #### Output Variables:
 ```shell
 """
         for x in self.output_vars:
             markdown += """{}
-""".format(x)
+""".format(x.strip())
         markdown += """```
 #### Output Artifacts:
 ```shell
 """
         for x in self.output_artifacts:
             markdown += """{}
-""".format(x)
+""".format(x.strip())
         markdown += """```
 ___
 """
@@ -66,11 +66,11 @@ if __name__ == "__main__":
     template_directory = sys.argv[1]
     print("Commencing auto-doc on directory: {}".format(template_directory))
 
-    def yaml_only(x): return re.search("(*.yml|*.yaml)", x) 
-    included_files = os.listdir(template_directory)
+    def yaml_only(x): return re.search("(.*.yml|.*.yaml)", x) 
+    included_files = list(filter(yaml_only, os.listdir(template_directory)))
 
     if len(included_files) != 2: 
-        print("Error: You must include \"doc.yml\" and one other yaml file in the directory.")
+        print("\nError: You must include \"doc.yml\" and one other yaml file in the directory.")
         print("\nNo other yaml files are allowed.")
         exit(100)
     else:
