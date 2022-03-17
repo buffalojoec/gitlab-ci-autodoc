@@ -9,14 +9,37 @@ class DocYaml:
         self.output_vars = yaml_object['output_vars']
         self.output_artifacts = yaml_object['output_artifacts']
 
-    def to_markdown_object(self):
-        print("\nDOC.YML VALUES:\n")
-        print("description: {}".format(self.description))
-        print("input_vars: {}".format(self.input_vars))
-        print("input_artifacts: {}".format(self.input_artifacts))
-        print("output_vars: {}".format(self.output_vars))
-        print("output_artifacts: {}".format(self.output_artifacts))
-        print("\n")
+    def to_markdown(self):
+        markdown = """#### Input Variables:
+```shell
+"""
+        for x in self.input_vars:
+            markdown += """{}
+""".format(x)
+        markdown += """```
+#### Input Artifacts:
+```shell
+"""
+        for x in self.input_artifacts:
+            markdown += """{}
+""".format(x)
+        markdown += """```
+#### Output Variables:
+```shell
+"""
+        for x in self.output_vars:
+            markdown += """{}
+""".format(x)
+        markdown += """```
+#### Output Artifacts:
+```shell
+"""
+        for x in self.output_artifacts:
+            markdown += """{}
+""".format(x)
+        markdown += """```
+"""
+        return markdown
 
 
 class TemplateYaml:
@@ -25,12 +48,13 @@ class TemplateYaml:
         self.image = yaml_object[self.name]['image']
         self.artifacts = yaml_object[self.name]['artifacts']
     
-    def to_markdown_object(self):
-        print("\nTEMPLATE YML VALUES:\n")
-        print("name: {}".format(self.name))
-        print("image: {}".format(self.image))
-        print("artifacts: {}".format(self.artifacts))
-        print("\n")
+    def to_markdown(self):
+        return """#### Base Image
+```shell
+{}
+```
+___
+""".format(self.image)
 
 
 if __name__ == "__main__":
@@ -49,15 +73,13 @@ if __name__ == "__main__":
         for inc_file in included_files:
             with open(template_directory + inc_file, 'r') as file: yaml_object = yaml.safe_load(file)
             if inc_file == "doc.yml":
-                # Doc.yml vars and artifacts
                 doc_yaml = DocYaml(yaml_object)
-                doc_yaml.to_markdown_object()
             else:
-                # Actual template job details
                 template_yaml = TemplateYaml(yaml_object)
-                template_yaml.to_markdown_object()
                 
         mdFile = mdutils.MdUtils(
             file_name = template_directory + "doc.md",
             title = template_yaml.name)
+        mdFile.write(template_yaml.to_markdown())
+        mdFile.write(doc_yaml.to_markdown())
         mdFile.create_md_file()
