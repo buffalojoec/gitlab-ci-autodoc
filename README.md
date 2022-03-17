@@ -5,7 +5,7 @@
 ___
 
 1. Create a subfolder for your template to live in. Say `sample/`.
-2. Write your template and give it a name. Say `eample.yml`.
+2. Write your template and give it a name. Say `example.yml`.
 3. Write the template's requirements in `doc.yml` according to following schema:
 
 ```yaml
@@ -22,4 +22,11 @@ output_vars:
   - PATH_TO_ARTIFACT_1
 output_artifacts:
   - Description of ARTIFACT_1
+```
+
+___
+
+Launch via:
+```shell
+python3 gitlab-ci-autodoc.py "./sample/"
 ```
