@@ -17,29 +17,25 @@ ___
 ```shell
 """
         for x in self.input_vars:
-            markdown += """{}
-""".format(x.strip())
+            markdown += """{}\n""".format(x.strip())
         markdown += """```
 #### Input Artifacts:
 ```shell
 """
         for x in self.input_artifacts:
-            markdown += """{}
-""".format(x.strip())
+            markdown += """{}\n""".format(x.strip())
         markdown += """```
 #### Output Variables:
 ```shell
 """
         for x in self.output_vars:
-            markdown += """{}
-""".format(x.strip())
+            markdown += """{}\n""".format(x.strip())
         markdown += """```
 #### Output Artifacts:
 ```shell
 """
         for x in self.output_artifacts:
-            markdown += """{}
-""".format(x.strip())
+            markdown += """{}\n""".format(x.strip())
         markdown += """```
 ___
 """

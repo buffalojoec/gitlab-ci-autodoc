@@ -7,7 +7,6 @@ ___
 ```shell
 OPENSHIFT_NAMESPACE
 OPENSHIFT_SECRET
-
 JAVA_JAR_NAME
 ```
 #### Input Artifacts:
@@ -16,7 +15,6 @@ Java .jar application
 ```
 #### Output Variables:
 ```shell
-
 OPENSHIFT_ROUTE
 HELM_DEPLOYMENT_VERSION
 OSE_MANIFEST_FILE
