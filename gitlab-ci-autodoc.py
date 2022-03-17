@@ -10,7 +10,10 @@ class DocYaml:
         self.output_artifacts = yaml_object['output_artifacts']
 
     def to_markdown(self):
-        markdown = """#### Input Variables:
+        markdown = """{}
+___
+""".format(self.description)
+        markdown += """#### Input Variables:
 ```shell
 """
         for x in self.input_vars:
@@ -38,6 +41,7 @@ class DocYaml:
             markdown += """{}
 """.format(x)
         markdown += """```
+___
 """
         return markdown
 
@@ -80,6 +84,6 @@ if __name__ == "__main__":
         mdFile = mdutils.MdUtils(
             file_name = template_directory + "doc.md",
             title = template_yaml.name)
-        mdFile.write(template_yaml.to_markdown())
         mdFile.write(doc_yaml.to_markdown())
+        mdFile.write(template_yaml.to_markdown())
         mdFile.create_md_file()
