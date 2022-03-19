@@ -1,11 +1,11 @@
 # GitLab CI Auto-Doc
 
-`gitlab-ci-autodoc` will automatically create markdown documentation for a 
+`gitlab_ci_autodoc` will automatically create markdown documentation for a 
 GitLab CI/CD job template written in YAML.
 ___
 Launch via:
 ```shell
-python3 -m gitlab-ci-autodoc "./sample/"
+python3 -m gitlab_ci_autodoc "./sample/"
 ```
 ___
 Each directory gets one markdown file, and it will contain documentation sections for
