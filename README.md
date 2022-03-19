@@ -21,5 +21,7 @@ Input/output vars and artifacts are extracted from the YAML automatically.
 
 To add a description to your YAML file, add a comment above your YAML code with the following syntax:
 ```yaml
-#** This is a description
+#** This is a description.
+#** You can write multiple lines and they
+#** will be appended.
 ```
