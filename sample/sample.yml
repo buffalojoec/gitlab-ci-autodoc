@@ -8,23 +8,20 @@
 
 # Below is how you add a description. Be sure to start with "#**"
 
-#** This job template will deploy a jar to OpenShift.
+#** This job template will build with Kaniko.
 
 
-test_deploy_template:
-  image: alpine:latest
-  variables:
-    OPENSHIFT_URL: url
-    KUBECTL_FILE: user
+test_build_template:
+  image: kaniko:latest
   script:
-    - oc login $OPENSHIFT_URL/$OPENSHIFT_REGION
-    - oc project $OPENSHIFT_PROJECT # Not present
-    - kubectl apply -f $KUBECTL_FILE
     - TAG="$(date %Y%m)"
     - echo "TAG=$TAG" >> pipeline.env
+    - echo "Building image $IMAGE_PATH:$TAG"
+    - > 
+      kaniko/executor
+      --dockerfile $DOCKERFILE
+      --destination $IMAGE_PATH:$TAG
   artifacts:
-    paths:
-      - some_app.jar
     reports:
       dotenv:
         - pipeline.env
