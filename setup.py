@@ -25,6 +25,7 @@ setup(
     ],
     packages=["gitlab_ci_autodoc"],
     include_package_data=True,
+    install_requires=["pyyaml", "mdutils"],
     entry_points={
         "console_scripts": [
             "gitlab_ci_autodoc=gitlab_ci_autodoc.__main__:main",
