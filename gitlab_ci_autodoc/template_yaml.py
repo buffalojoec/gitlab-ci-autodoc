@@ -75,9 +75,10 @@ class TemplateYaml:
         
         # Finally take the total evaluated variables minus the vars in
         #       the "variables" section minus the intialized vars
+        # It also can't start with "CI_" (GitLab predefined vars)
         input_vars = []
         for v in evaluated_vars:
-            if v not in variables and v not in initialized_vars:
+            if v not in variables and v not in initialized_vars and v[:3] != "CI_":
                 input_vars.append(v)
 
         return input_vars
