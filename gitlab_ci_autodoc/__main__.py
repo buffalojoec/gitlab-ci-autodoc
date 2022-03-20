@@ -10,7 +10,7 @@ if __name__ == "__main__":
     yaml_files_detected = list(filter(yaml_only, os.listdir(directory)))
 
     mdFile = mdutils.MdUtils(
-        file_name = sys.argv[1] + "doc.md")
+        file_name = directory + "doc.md")
 
     for yaml_file in yaml_files_detected:
         template_yaml = TemplateYaml(directory, yaml_file)
